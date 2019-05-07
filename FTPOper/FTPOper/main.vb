@@ -19,6 +19,7 @@ Public Class main
 
 
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ProgressBar1.Value = 30
 
         Dim file_ As New DirectoryInfo(localPath)
 
