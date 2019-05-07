@@ -2,154 +2,273 @@
 Imports System.IO
 Imports FluentFTP
 Imports System.ComponentModel
-
+''' <summary>
+''' Cada vez que el programa se inicia, se crea un archivo de logueo con el siguiente formato: log_yyyymmdd_hhmmss
+''' 
+''' Como se espera que este programa sea utilizado una vez al mes
+''' se propone el siguiente funcionaminto:
+''' Al seleccionar la carpeta que contienen los recibos del mes, los mismo se suben al servidor FTP y se guardan en un directorio 
+''' cuyo nombre tendra el siguiente formato: yyyymmdd_HHmm  (AñoMesDia_Hora(formato 24 horas)Minutos)
+''' </summary>
 Public Class main
 
-    Dim user As String = "px000629"
-    Dim pass As String = "XandroXi9j"
-    Dim remotePath As String = "/recibos/"
-    Dim localPath As String = "C:\recibos\"
+    'Config servidor FTP
+    Dim FTPuser As String = "ucptest@carteled.com.ar"                      'poner en txt
+    Dim FTPpassword As String = "UCPtest2019"                'poner en txt
+    Dim serverDir As String = "ftp://ftp.carteled.com.ar"   'poner por txt
 
-    Dim fileList As List(Of String) = New List(Of String)
-    Dim fileCount As Integer
-    Dim fileSize As Integer
+    'Paths
+    Dim localPath As String             'direccion en disco rigido local
+    Dim remotePath As String            'direccion en el servidor FTP
+    Dim remoteFolder As String          'carpeta donde se van a guardar los archivos, debe ser creada en el momento
+    Dim remoteSubFolder As String       'poner como txt
 
-    Dim list1 As List(Of String) = New List(Of String)
+    'variables para archivos
+    Dim fileList As List(Of String) = New List(Of String)   'almacena todos los archivos de una carpeta
+    Dim fileCount As Integer                                'almacena la cantidad de archivos de la carpeta o seleccionados
+    Dim fileSize As Integer                                 'almacena el tamaño de todos los archivos o del archivo
+
+    Dim logFileName As String
+
+    Dim errorType As Integer    '0 ninguno; 1=login
 
 
 
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ProgressBar1.Value = 30
 
-        Dim file_ As New DirectoryInfo(localPath)
+        Control.CheckForIllegalCrossThreadCalls = False
 
-        For Each item In file_.GetFiles
-            list1.Add(localPath & item.ToString)
-            'list1.Add(item.ToString)
-        Next
+        resetParameters()
 
-        ProgressBar1.Maximum = list1.Count
+        'activar servicio de logueo de interaccion con el servidor
+        'FTPLogService()
+
+        'determinar el nombre de la carpeta
+        remoteSubFolder = "/ucp"
+        remoteFolder = DateTime.Now.ToString("yyyyMMdd_HHmm")
+
+        lbInfoRemoteDir.Text = serverDir & remoteSubFolder & "/" & remoteFolder
+
 
     End Sub
+
+
 
 
     '###################################################
     '#################-----BOTONES-----#################
     '###################################################
 
-
     Private Sub btSelectFolder_Click(sender As Object, e As EventArgs) Handles btSelectFolder.Click
-        txInfoSourceSelected.Text = ""
+        rchInfo.Clear()
+
         fileList.Clear()
+
+        resetParameters()
 
         'si cancela la pantalla
         If FolderBrowserDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
             Exit Sub
         End If
 
-        localPath = FolderBrowserDialog1.SelectedPath & "\"
-        txInfoSourceSelected.Text = txInfoSourceSelected.Text & "Ruta de origen: " & vbCrLf & localPath & vbCrLf
+        localPath = FolderBrowserDialog1.SelectedPath & "\"                 'obtengo el path del directorio seleccionado
 
-        Dim file_ As New DirectoryInfo(localPath)   'info del directorio
+        Dim file As New DirectoryInfo(localPath)                           'info del directorio
 
-        fileCount = file_.GetFiles.Count
-        txInfoSourceSelected.Text = txInfoSourceSelected.Text & "Cantidad de archivos: " & fileCount & vbCrLf
+        fileCount = file.GetFiles.Count                                    'contamos la cantidad de archivos
 
-        For Each item In file_.GetFiles
+        'listamos todos los archivos y sumamos el tamaño de cada uno
+        For Each item In file.GetFiles
             fileList.Add(item.ToString)
             Dim aux As New FileInfo(localPath & item.ToString)      'info de cada archivo
             fileSize = fileSize + aux.Length
         Next
 
-        txInfoSourceSelected.Text = txInfoSourceSelected.Text & "Tamaño total a subir: " & Math.Round(fileSize / 1000000, 2) & "MB"
+        'textos
+        Dim str1 As String = "Ruta de origen: " 'localPath
+        Dim str2 As String = "Cantidad de archivos: " 'fileCount
+        Dim str3 As String = "Tamaño total a subir: " ' fileSize
 
+        rchInfo.AppendText(str1 & vbCrLf & localPath & vbCrLf & str2 & fileCount & vbCrLf & str3 & Math.Round(fileSize / 1000000, 2) & "MB")
+        rchInfo.SelectionProtected = True
+
+        'recien activamos el boton de subir
+        btUpload.Enabled = True
+        btUpload.Text = "Subir archivos"
+
+        ProgressBar1.Maximum = fileCount - 1
     End Sub
 
 
+    Private Sub btSelectFile_Click(sender As Object, e As EventArgs) Handles btSelectFile.Click
+        rchInfo.Clear()
+
+        fileList.Clear()
+
+        resetParameters()
+
+        If OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
+            Exit Sub
+        End If
+
+        Dim aux As String = OpenFileDialog1.FileName        'obtiene full path del archivo 
+
+        Dim file As New FileInfo(aux)                      'obtiene toda la info de ese archivo
+        localPath = file.DirectoryName & "\"               'obtengo solo el path del directorio de donde esta el archivo
+        fileList.Add(file.Name)                             'usamos la misma estructura que para multiples archivos
+        fileSize = file.Length                             'tamaño del archivo
+        fileCount = 1
+
+        Dim str1 As String = "Path del archivo de origen: " 'localPath
+        Dim str2 As String = "Tamaño total a subir: " ' fileSize
+
+        rchInfo.AppendText(str1 & vbCrLf & localPath & fileList(0).ToString & vbCrLf & str2 & Math.Round(fileSize / 1000, 2) & "kB")
+        rchInfo.SelectionProtected = True
+
+        'recien activamos el boton de subir
+        btUpload.Enabled = True
+        btUpload.Text = "Subir archivo"
+
+        ProgressBar1.Maximum = 1
+    End Sub
+
+
+    Private Sub btConfig_Click(sender As Object, e As EventArgs) Handles btConfig.Click
+        'jds
+        Dim dialogConfig As New dlgConfig
+
+        dialogConfig.ShowDialog()
+    End Sub
 
     Private Sub btUpload_Click(sender As Object, e As EventArgs) Handles btUpload.Click
 
-        'bgw.RunWorkerAsync()
-
-        ftpfunc()
+        bgw.RunWorkerAsync()
 
     End Sub
 
 
-    Private Sub ftpfunc()
 
-        Dim cliente As New FtpClient("ftp://ftp.carteled.com.ar")
+    Private Sub mainUpload()
 
-        cliente.Credentials = New NetworkCredential(user, pass)
+        Dim cliente As New FtpClient(serverDir)
 
-        cliente.Connect()
+        cliente.Credentials = New NetworkCredential(FTPuser, FTPpassword)   'cargamos las credenciales
+
+        Try
+            cliente.Connect()
+
+        Catch ex As Exception
+            errorType = 1   'error de login
+            bgw.CancelAsync()
+            Exit Sub
+        End Try
+
+
+        'creamos carpeta en el servidor remoto
+        remotePath = remoteSubFolder & "/" & remoteFolder & "/"
         cliente.CreateDirectory(remotePath)
 
-        'For i As Integer = 0 To list1.Count - 1
-        'Debug.Print(list1(i).ToString)
-        'cliente.UploadFile(localPath & list1(i).ToString, remotePath & list1(i).ToString)
-        'bgw.ReportProgress(i)
-        'Next
+        'loop que recorre la lista de archivos y sube uno por uno
+        Dim i As Integer
+        For i = 0 To fileList.Count - 1
+            cliente.UploadFile(localPath & fileList(i).ToString, remotePath & fileList(i).ToString)
 
+            bgw.ReportProgress(i)
 
-        cliente.UploadFiles(list1, remotePath)
-
-        'cliente.GetListing()
+            'agregar un par de reintentos, si da error es porque por alguna razon no se pudo subir un archio y hay que cortar todo
+            errorType = 2   'timeout
+        Next
 
         cliente.Disconnect()
 
+        errorType = 0   'no error
     End Sub
 
 
 
 
 
-    Private Sub UpSingleFile()
-        'Upload File to FTP site
-        'Create Request To Upload File'
-        Dim wrUpload As FtpWebRequest = DirectCast(WebRequest.Create("ftp://ftp.carteled.com.ar/pdf.pdf"), FtpWebRequest)
-
-        'Specify Username & Password'
-        wrUpload.Credentials = New NetworkCredential("px000629", "XandroXi9j")
-
-        'Start Upload Process'
-        wrUpload.Method = WebRequestMethods.Ftp.UploadFile
-
-        'Locate File And Store It In Byte Array'
-        Dim btfile() As Byte = File.ReadAllBytes("c:\pdf.pdf")
-
-        'Get File'
-        Dim strFile As Stream = wrUpload.GetRequestStream()
-
-        'Upload Each Byte'
-        strFile.Write(btfile, 0, btfile.Length)
-
-        'Close'
-        strFile.Close()
-
-        'Free Memory'
-        strFile.Dispose()
-    End Sub
 
 
 
 
 
     Private Sub bgw_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw.DoWork
-        '
-        ftpfunc()
 
+        mainUpload()
 
     End Sub
 
+
     Private Sub bgw_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw.ProgressChanged
+
+        lbSubiendo.Visible = True
+
         ProgressBar1.Value = e.ProgressPercentage
+        lbPorcentaje.Text = "Total: " & e.ProgressPercentage & " de " & fileCount & " (" & Math.Round((ProgressBar1.Value * 100 / ProgressBar1.Maximum), 0) & "%)"
+
+        lbPorcentaje.Update()
         ProgressBar1.Update()
 
     End Sub
 
+
     Private Sub bgw_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgw.RunWorkerCompleted
-        Label1.Text = "done"
+        Select Case errorType
+            Case 0
+                lbPorcentaje.Text = "Total: " & fileCount & " de " & fileCount & " (100%)"
+
+                Dim str1 As String = "Proceso finalizado con exito"
+                Dim str2 As String = "Total archivos subidos: "
+                Dim str3 As String = "Directorio destino: "
+                Dim str4 As String = "-----------########-----------"
+
+                lbStatus.Text = str4 & vbCrLf & str1 & vbCrLf & str2 & fileCount & vbCrLf & str3 & remotePath & vbCrLf & str4
+
+            Case 1
+                lbStatus.Visible = True
+                lbStatus.Text = "Error login: Usuario y/o Contraseña incorrectos"
+
+            Case 2
+                'timeout
+        End Select
+
+
+    End Sub
+
+
+
+    Private Sub FTPLogService()
+
+        FtpTrace.LogFunctions = True
+        FtpTrace.LogIP = True
+        FtpTrace.LogUserName = True
+        FtpTrace.LogPassword = False 'pasar a false despues 
+
+        FtpTrace.LogFunctions = True
+        FtpTrace.AddListener(New TextWriterTraceListener(logFileName))       'despues poner ruta para el archivo log
+
+    End Sub
+
+
+
+
+    Private Sub rchInfo_SelectionChanged(sender As Object, e As EventArgs) Handles rchInfo.SelectionChanged
+        rchInfo.Select(rchInfo.SelectionStart, 0)
+    End Sub
+
+
+
+    Private Sub resetParameters()
+        lbPorcentaje.Text = ""
+        lbStatus.Text = ""
+        lbSubiendo.Visible = False
+
+        ProgressBar1.Minimum = 0
+        ProgressBar1.Value = 0
+
+        btUpload.Enabled = False
+
     End Sub
 
 

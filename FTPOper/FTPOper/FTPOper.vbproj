@@ -74,6 +74,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dlgConfig.Designer.vb">
+      <DependentUpon>dlgConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="dlgConfig.resx">
+      <DependentUpon>dlgConfig.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.vb</DependentUpon>
     </EmbeddedResource>
