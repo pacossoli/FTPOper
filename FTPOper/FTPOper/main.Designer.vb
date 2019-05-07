@@ -25,15 +25,14 @@ Partial Class main
         Me.btUpload = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.bgw = New System.ComponentModel.BackgroundWorker()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txInfoSourceSelected = New System.Windows.Forms.TextBox()
         Me.btSelectFolder = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.btSelectFile = New System.Windows.Forms.Button()
         Me.lbInfoFile = New System.Windows.Forms.Label()
-        Me.txInfoSourceSelected = New System.Windows.Forms.TextBox()
+        Me.btSelectFile = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -61,13 +60,6 @@ Partial Class main
         Me.bgw.WorkerReportsProgress = True
         Me.bgw.WorkerSupportsCancellation = True
         '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Location = New System.Drawing.Point(20, 303)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(258, 25)
-        Me.ProgressBar1.TabIndex = 2
-        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
@@ -82,6 +74,17 @@ Partial Class main
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Subir múltiples archivos"
+        '
+        'txInfoSourceSelected
+        '
+        Me.txInfoSourceSelected.BackColor = System.Drawing.SystemColors.Control
+        Me.txInfoSourceSelected.Enabled = False
+        Me.txInfoSourceSelected.Location = New System.Drawing.Point(6, 22)
+        Me.txInfoSourceSelected.Multiline = True
+        Me.txInfoSourceSelected.Name = "txInfoSourceSelected"
+        Me.txInfoSourceSelected.ReadOnly = True
+        Me.txInfoSourceSelected.Size = New System.Drawing.Size(373, 58)
+        Me.txInfoSourceSelected.TabIndex = 1
         '
         'btSelectFolder
         '
@@ -104,15 +107,6 @@ Partial Class main
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Subir un archivo"
         '
-        'btSelectFile
-        '
-        Me.btSelectFile.Location = New System.Drawing.Point(385, 20)
-        Me.btSelectFile.Name = "btSelectFile"
-        Me.btSelectFile.Size = New System.Drawing.Size(72, 38)
-        Me.btSelectFile.TabIndex = 0
-        Me.btSelectFile.Text = "Seleccionar archivo"
-        Me.btSelectFile.UseVisualStyleBackColor = True
-        '
         'lbInfoFile
         '
         Me.lbInfoFile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -122,16 +116,14 @@ Partial Class main
         Me.lbInfoFile.TabIndex = 1
         Me.lbInfoFile.Text = "Label2"
         '
-        'txInfoSourceSelected
+        'btSelectFile
         '
-        Me.txInfoSourceSelected.BackColor = System.Drawing.SystemColors.Control
-        Me.txInfoSourceSelected.Enabled = False
-        Me.txInfoSourceSelected.Location = New System.Drawing.Point(6, 22)
-        Me.txInfoSourceSelected.Multiline = True
-        Me.txInfoSourceSelected.Name = "txInfoSourceSelected"
-        Me.txInfoSourceSelected.ReadOnly = True
-        Me.txInfoSourceSelected.Size = New System.Drawing.Size(373, 58)
-        Me.txInfoSourceSelected.TabIndex = 1
+        Me.btSelectFile.Location = New System.Drawing.Point(385, 20)
+        Me.btSelectFile.Name = "btSelectFile"
+        Me.btSelectFile.Size = New System.Drawing.Size(72, 38)
+        Me.btSelectFile.TabIndex = 0
+        Me.btSelectFile.Text = "Seleccionar archivo"
+        Me.btSelectFile.UseVisualStyleBackColor = True
         '
         'main
         '
@@ -140,7 +132,6 @@ Partial Class main
         Me.ClientSize = New System.Drawing.Size(487, 376)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btUpload)
         Me.Name = "main"
@@ -157,7 +148,6 @@ Partial Class main
     Friend WithEvents btUpload As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents bgw As System.ComponentModel.BackgroundWorker
-    Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents GroupBox1 As GroupBox
