@@ -1,7 +1,10 @@
 ﻿Imports System.Net
 Imports System.IO
 Imports FluentFTP
+Imports FluentFTP.FtpProgress
+Imports FluentFTP.Proxy
 Imports System.ComponentModel
+
 ''' <summary>
 ''' Cada vez que el programa se inicia, se crea un archivo de logueo con el siguiente formato: log_yyyymmdd_hhmmss
 ''' 
@@ -9,6 +12,9 @@ Imports System.ComponentModel
 ''' se propone el siguiente funcionaminto:
 ''' Al seleccionar la carpeta que contienen los recibos del mes, los mismo se suben al servidor FTP y se guardan en un directorio 
 ''' cuyo nombre tendra el siguiente formato: yyyymmdd_HHmm  (AñoMesDia_Hora(formato 24 horas)Minutos)
+''' 
+''' no se como funciona la libreria de proxy
+''' no se como funciona la libreria de progreso, si bien ya tengo implementado eso, pero quiero la otra
 ''' </summary>
 Public Class main
 
@@ -28,9 +34,12 @@ Public Class main
     Dim fileCount As Integer                                'almacena la cantidad de archivos de la carpeta o seleccionados
     Dim fileSize As Integer                                 'almacena el tamaño de todos los archivos o del archivo
 
+    'logueo de datos
     Dim logFileName As String
 
-    Dim errorType As Integer    '0 ninguno; 1=login
+    'error handling
+    Dim errorType As Integer    '0 ninguno; 1=login incorrect; 2=error de subida de archivo
+
 
 
 
@@ -44,11 +53,10 @@ Public Class main
         'FTPLogService()
 
         'determinar el nombre de la carpeta
-        remoteSubFolder = "/ucp"
+        remoteSubFolder = "/ucp"        'hay que sacar del txt
         remoteFolder = DateTime.Now.ToString("yyyyMMdd_HHmm")
 
         lbInfoRemoteDir.Text = serverDir & remoteSubFolder & "/" & remoteFolder
-
 
     End Sub
 
@@ -141,11 +149,20 @@ Public Class main
     End Sub
 
     Private Sub btUpload_Click(sender As Object, e As EventArgs) Handles btUpload.Click
+        'bloqueamos los botones mientras se suben archivos
+        btSelectFolder.Enabled = False
+        btSelectFile.Enabled = False
+        btUpload.Enabled = False
 
         bgw.RunWorkerAsync()
 
     End Sub
 
+
+
+    '#################################################################
+    '#################-----FUNCIONES PRINCIPALRD-----#################
+    '#################################################################
 
 
     Private Sub mainUpload()
@@ -170,27 +187,26 @@ Public Class main
 
         'loop que recorre la lista de archivos y sube uno por uno
         Dim i As Integer
-        For i = 0 To fileList.Count - 1
-            cliente.UploadFile(localPath & fileList(i).ToString, remotePath & fileList(i).ToString)
+        Try
+            For i = 0 To fileList.Count - 1
+                cliente.UploadFile(localPath & fileList(i).ToString, remotePath & fileList(i).ToString)
 
-            bgw.ReportProgress(i)
+                bgw.ReportProgress(i)
+            Next
 
-            'agregar un par de reintentos, si da error es porque por alguna razon no se pudo subir un archio y hay que cortar todo
-            errorType = 2   'timeout
-        Next
+        Catch ex As Exception
+            Debug.Print(ex.ToString)
+            'en caso de que no se pueda subir algun archivo
+            errorType = 2
+            bgw.CancelAsync()
+            Exit Sub
+        End Try
+
 
         cliente.Disconnect()
 
         errorType = 0   'no error
     End Sub
-
-
-
-
-
-
-
-
 
 
     Private Sub bgw_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw.DoWork
@@ -214,6 +230,12 @@ Public Class main
 
 
     Private Sub bgw_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgw.RunWorkerCompleted
+
+        'los volvemos a habilitar una vez terminado el proceso
+        btSelectFolder.Enabled = True
+        btSelectFile.Enabled = True
+        btUpload.Enabled = False
+
         Select Case errorType
             Case 0
                 lbPorcentaje.Text = "Total: " & fileCount & " de " & fileCount & " (100%)"
@@ -224,20 +246,26 @@ Public Class main
                 Dim str4 As String = "-----------########-----------"
 
                 lbStatus.Text = str4 & vbCrLf & str1 & vbCrLf & str2 & fileCount & vbCrLf & str3 & remotePath & vbCrLf & str4
+                ProgressBar1.Value = ProgressBar1.Maximum
 
             Case 1
-                lbStatus.Visible = True
                 lbStatus.Text = "Error login: Usuario y/o Contraseña incorrectos"
 
             Case 2
-                'timeout
+                lbStatus.Text = "Error al subir archivo: Por favor, verifique su conexión a internet" & vbCrLf &
+                    "Si el problema persiste, contacte a su proveedor de internet o al soporte técnico adecuado"
         End Select
 
 
     End Sub
 
 
+    '############################################################
+    '#################-----FUNCIONES VARIAS-----#################
+    '############################################################
 
+
+    'esto vamos a ver ultimo
     Private Sub FTPLogService()
 
         FtpTrace.LogFunctions = True
@@ -251,12 +279,9 @@ Public Class main
     End Sub
 
 
-
-
     Private Sub rchInfo_SelectionChanged(sender As Object, e As EventArgs) Handles rchInfo.SelectionChanged
         rchInfo.Select(rchInfo.SelectionStart, 0)
     End Sub
-
 
 
     Private Sub resetParameters()
