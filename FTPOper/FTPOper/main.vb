@@ -16,18 +16,13 @@ Imports System.ComponentModel
 ''' no se como funciona la libreria de proxy
 ''' no se como funciona la libreria de progreso, si bien ya tengo implementado eso, pero quiero la otra
 ''' </summary>
-Public Class main
+''' 
 
-    'Config servidor FTP
-    Dim FTPuser As String = "ucptest@carteled.com.ar"                      'poner en txt
-    Dim FTPpassword As String = "UCPtest2019"                'poner en txt
-    Dim serverDir As String = "ftp://ftp.carteled.com.ar"   'poner por txt
+
+Public Class main
 
     'Paths
     Dim localPath As String             'direccion en disco rigido local
-    Dim remotePath As String            'direccion en el servidor FTP
-    Dim remoteFolder As String          'carpeta donde se van a guardar los archivos, debe ser creada en el momento
-    Dim remoteSubFolder As String       'poner como txt
 
     'variables para archivos
     Dim fileList As List(Of String) = New List(Of String)   'almacena todos los archivos de una carpeta
@@ -47,16 +42,18 @@ Public Class main
 
         Control.CheckForIllegalCrossThreadCalls = False
 
+        fechaActual = DateTime.Now.ToString("yyyyMMdd_HHmm")
+
         resetParameters()
 
         'activar servicio de logueo de interaccion con el servidor
         'FTPLogService()
 
-        'determinar el nombre de la carpeta
-        remoteSubFolder = "/ucp"        'hay que sacar del txt
-        remoteFolder = DateTime.Now.ToString("yyyyMMdd_HHmm")
+        LoadConfig()
 
-        lbInfoRemoteDir.Text = serverDir & remoteSubFolder & "/" & remoteFolder
+        remoteFolder = remoteFolder & "_" & fechaActual      'entonces la carpeta se llama: lo que puso el usuario _ 20190508_1752
+
+        lbInfoRemoteDir.Text = FTPserver & "/" & remoteFolder
 
     End Sub
 
@@ -146,6 +143,13 @@ Public Class main
         Dim dialogConfig As New dlgConfig
 
         dialogConfig.ShowDialog()
+
+        LoadConfig()
+
+        remoteFolder = remoteFolder & "_" & fechaActual
+
+        lbInfoRemoteDir.Text = FTPserver & "/" & remoteFolder
+
     End Sub
 
     Private Sub btUpload_Click(sender As Object, e As EventArgs) Handles btUpload.Click
@@ -167,7 +171,7 @@ Public Class main
 
     Private Sub mainUpload()
 
-        Dim cliente As New FtpClient(serverDir)
+        Dim cliente As New FtpClient(FTPserver)
 
         cliente.Credentials = New NetworkCredential(FTPuser, FTPpassword)   'cargamos las credenciales
 
@@ -182,7 +186,7 @@ Public Class main
 
 
         'creamos carpeta en el servidor remoto
-        remotePath = remoteSubFolder & "/" & remoteFolder & "/"
+        remotePath = remoteFolder & "/"
         cliente.CreateDirectory(remotePath)
 
         'loop que recorre la lista de archivos y sube uno por uno

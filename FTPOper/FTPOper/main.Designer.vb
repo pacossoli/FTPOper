@@ -180,7 +180,7 @@ Partial Class main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(495, 359)
+        Me.ClientSize = New System.Drawing.Size(495, 485)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lbStatus)
         Me.Controls.Add(Me.Label2)
