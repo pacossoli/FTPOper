@@ -3,10 +3,10 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Setup1"
-"LanguageId" = "3:3082"
+"ProjectName" = "8:FTPOper for UCP"
+"LanguageId" = "3:1033"
 "CodePage" = "3:1252"
-"UILanguageId" = "3:3082"
+"UILanguageId" = "3:1033"
 "SccProjectName" = "8:"
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
@@ -15,26 +15,32 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_602EFBC95A9F44EA8F8B53A8EBD95EBF"
+        "MsmKey" = "8:_B32FC60DBBB942B298D9F4A477BA0924"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D95376DE19AC4EA438C94CF054E336EA"
-        "OwnerKey" = "8:_602EFBC95A9F44EA8F8B53A8EBD95EBF"
+        "MsmKey" = "8:_C8B26F5E1E3B1D86A31F32530D96ECA6"
+        "OwnerKey" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D95376DE19AC4EA438C94CF054E336EA"
+        "OwnerKey" = "8:_C8B26F5E1E3B1D86A31F32530D96ECA6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_602EFBC95A9F44EA8F8B53A8EBD95EBF"
+        "OwnerKey" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -45,7 +51,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Setup1.msi"
+        "OutputFilename" = "8:Debug\\FTPOper for UCP.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -55,6 +61,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:2"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6 (x86 y x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -71,6 +93,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -100,14 +138,34 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D95376DE19AC4EA438C94CF054E336EA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B32FC60DBBB942B298D9F4A477BA0924"
+            {
+            "SourcePath" = "8:..\\FTPOper\\bin\\Debug\\config\\config.conf"
+            "TargetName" = "8:config.conf"
+            "Tag" = "8:"
+            "Folder" = "8:_C18B56EA748C4F0A95EF0B1B736A96FC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C8B26F5E1E3B1D86A31F32530D96ECA6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:FluentFTP, Version=24.0.0.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D95376DE19AC4EA438C94CF054E336EA"
+                    "_C8B26F5E1E3B1D86A31F32530D96ECA6"
                     {
                     "Name" = "8:FluentFTP.dll"
                     "Attributes" = "3:512"
@@ -169,6 +227,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C18B56EA748C4F0A95EF0B1B736A96FC"
+                    {
+                    "Name" = "8:config"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_C0DAFB730C244F06B76C42B09A506BBD"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -180,15 +249,15 @@
         }
         "MsiBootstrapper"
         {
-        "LangId" = "3:3082"
+        "LangId" = "3:1033"
         "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup1"
+        "ProductName" = "8:FTPOper"
         "ProductCode" = "8:{2C3659FE-0801-42A2-B59A-943F9114D5D7}"
-        "PackageCode" = "8:{6DB8D7C1-5441-4B9C-990E-BEBA853B51A8}"
+        "PackageCode" = "8:{6BD047E9-6BAF-4A01-A2D0-F6DD650B32C0}"
         "UpgradeCode" = "8:{D6C9B20F-A1F7-4F2B-AA2E-67879D7B8717}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -199,7 +268,7 @@
         "Manufacturer" = "8:Microsoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup1"
+        "Title" = "8:FTPOper Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Microsoft"
         "Keywords" = "8:"
@@ -308,6 +377,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F9C762FC55494AC68288D17565153CC4"
+            {
+            "Name" = "8:FTPOper for UCP"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
+            "Folder" = "8:_137AF0A1454E404B838D34DBE9AC7A9E"
+            "WorkingFolder" = "8:_B345A544C7084A7283FF25B25FA9EFF4"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -707,7 +790,35 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_602EFBC95A9F44EA8F8B53A8EBD95EBF"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_99B34F85D3EB4B10BA27CA927E46F2E4"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B345A544C7084A7283FF25B25FA9EFF4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:ContentFiles"
+            "OutputProjectGuid" = "8:{38EF2919-B2B2-475C-9DE0-7BD77087C26D}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CA8AAAEC24CB4038BEA8D0659E19CC70"
             {
             "SourcePath" = "8:..\\FTPOper\\obj\\Debug\\FTPOper.exe"
             "TargetName" = "8:"
