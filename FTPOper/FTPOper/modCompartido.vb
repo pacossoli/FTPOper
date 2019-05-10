@@ -51,6 +51,7 @@ Module modCompartido
         If Not File.Exists(path) Then
             'load config default
             LoadDefault()
+            Exit Sub
         End If
 
         archivo = File.OpenText(path)
