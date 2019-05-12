@@ -128,7 +128,7 @@ Public Class dlgConfig
     End Sub
 
     Private Sub txRemoteFolder_TextChanged(sender As Object, e As EventArgs) Handles txRemoteFolder.TextChanged
-        lbFolderInfo.Text = "El nombre que ingrese + fecha_hora será utilizado para crear una carpeta cada vez que suba archivos" & vbCrLf &
+        lbFolderInfo.Text = "El nombre que ingrese + fecha será utilizado para crear una carpeta cada vez que suba archivos" & vbCrLf &
             "Puede ingresar sub carpetas (existentes o no) + / (barra). Ver ejemplo--->" & vbCrLf &
             txFTPserver.Text & "/" & txRemoteFolder.Text & "_" & fechaActual
 

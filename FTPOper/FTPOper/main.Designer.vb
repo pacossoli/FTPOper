@@ -37,14 +37,14 @@ Partial Class main
         Me.lbPorcentaje = New System.Windows.Forms.Label()
         Me.lbSubiendo = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.lbStatus = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.rchStatus = New System.Windows.Forms.RichTextBox()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'btUpload
         '
-        Me.btUpload.Location = New System.Drawing.Point(366, 266)
+        Me.btUpload.Location = New System.Drawing.Point(282, 266)
         Me.btUpload.Name = "btUpload"
         Me.btUpload.Size = New System.Drawing.Size(110, 46)
         Me.btUpload.TabIndex = 0
@@ -65,7 +65,7 @@ Partial Class main
         Me.GroupBox3.Controls.Add(Me.lbInfoRemoteDir)
         Me.GroupBox3.Location = New System.Drawing.Point(13, 122)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(463, 55)
+        Me.GroupBox3.Size = New System.Drawing.Size(379, 55)
         Me.GroupBox3.TabIndex = 5
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Directorio remoto"
@@ -75,12 +75,12 @@ Partial Class main
         Me.lbInfoRemoteDir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lbInfoRemoteDir.Location = New System.Drawing.Point(6, 21)
         Me.lbInfoRemoteDir.Name = "lbInfoRemoteDir"
-        Me.lbInfoRemoteDir.Size = New System.Drawing.Size(451, 21)
+        Me.lbInfoRemoteDir.Size = New System.Drawing.Size(367, 21)
         Me.lbInfoRemoteDir.TabIndex = 0
         '
         'btConfig
         '
-        Me.btConfig.Location = New System.Drawing.Point(366, 318)
+        Me.btConfig.Location = New System.Drawing.Point(282, 318)
         Me.btConfig.Name = "btConfig"
         Me.btConfig.Size = New System.Drawing.Size(110, 26)
         Me.btConfig.TabIndex = 6
@@ -90,10 +90,10 @@ Partial Class main
         'rchInfo
         '
         Me.rchInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rchInfo.Location = New System.Drawing.Point(151, 32)
+        Me.rchInfo.Location = New System.Drawing.Point(132, 32)
         Me.rchInfo.Name = "rchInfo"
         Me.rchInfo.ReadOnly = True
-        Me.rchInfo.Size = New System.Drawing.Size(325, 72)
+        Me.rchInfo.Size = New System.Drawing.Size(260, 72)
         Me.rchInfo.TabIndex = 8
         Me.rchInfo.Text = ""
         '
@@ -118,7 +118,7 @@ Partial Class main
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(148, 16)
+        Me.Label1.Location = New System.Drawing.Point(129, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(62, 13)
         Me.Label1.TabIndex = 11
@@ -126,9 +126,10 @@ Partial Class main
         '
         'ProgressBar1
         '
+        Me.ProgressBar1.BackColor = System.Drawing.SystemColors.Control
         Me.ProgressBar1.Location = New System.Drawing.Point(13, 207)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(462, 26)
+        Me.ProgressBar1.Size = New System.Drawing.Size(379, 26)
         Me.ProgressBar1.TabIndex = 13
         '
         'lbPorcentaje
@@ -147,7 +148,6 @@ Partial Class main
         Me.lbSubiendo.Size = New System.Drawing.Size(59, 13)
         Me.lbSubiendo.TabIndex = 14
         Me.lbSubiendo.Text = "subiendo..."
-        Me.lbSubiendo.Visible = False
         '
         'Label2
         '
@@ -158,15 +158,6 @@ Partial Class main
         Me.Label2.TabIndex = 15
         Me.Label2.Text = "Progreso general:"
         '
-        'lbStatus
-        '
-        Me.lbStatus.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.lbStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbStatus.Location = New System.Drawing.Point(9, 266)
-        Me.lbStatus.Name = "lbStatus"
-        Me.lbStatus.Size = New System.Drawing.Size(348, 78)
-        Me.lbStatus.TabIndex = 16
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -176,13 +167,22 @@ Partial Class main
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "Resultado:"
         '
+        'rchStatus
+        '
+        Me.rchStatus.BackColor = System.Drawing.SystemColors.Control
+        Me.rchStatus.Location = New System.Drawing.Point(13, 266)
+        Me.rchStatus.Name = "rchStatus"
+        Me.rchStatus.Size = New System.Drawing.Size(263, 78)
+        Me.rchStatus.TabIndex = 18
+        Me.rchStatus.Text = ""
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(495, 485)
+        Me.ClientSize = New System.Drawing.Size(404, 354)
+        Me.Controls.Add(Me.rchStatus)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.lbStatus)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lbSubiendo)
         Me.Controls.Add(Me.lbPorcentaje)
@@ -196,7 +196,7 @@ Partial Class main
         Me.Controls.Add(Me.btUpload)
         Me.Name = "main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FTPOper"
+        Me.Text = "FTPOper for UCP"
         Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -218,6 +218,6 @@ Partial Class main
     Friend WithEvents lbPorcentaje As Label
     Friend WithEvents lbSubiendo As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents lbStatus As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents rchStatus As RichTextBox
 End Class
