@@ -22,6 +22,7 @@ Partial Class main
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(main))
         Me.btUpload = New System.Windows.Forms.Button()
         Me.bgw = New System.ComponentModel.BackgroundWorker()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -39,12 +40,15 @@ Partial Class main
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.rchStatus = New System.Windows.Forms.RichTextBox()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox3.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btUpload
         '
-        Me.btUpload.Location = New System.Drawing.Point(282, 266)
+        Me.btUpload.Location = New System.Drawing.Point(282, 260)
         Me.btUpload.Name = "btUpload"
         Me.btUpload.Size = New System.Drawing.Size(110, 46)
         Me.btUpload.TabIndex = 0
@@ -63,9 +67,9 @@ Partial Class main
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.lbInfoRemoteDir)
-        Me.GroupBox3.Location = New System.Drawing.Point(13, 122)
+        Me.GroupBox3.Location = New System.Drawing.Point(13, 116)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(379, 55)
+        Me.GroupBox3.Size = New System.Drawing.Size(379, 50)
         Me.GroupBox3.TabIndex = 5
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Directorio remoto"
@@ -73,14 +77,14 @@ Partial Class main
         'lbInfoRemoteDir
         '
         Me.lbInfoRemoteDir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbInfoRemoteDir.Location = New System.Drawing.Point(6, 21)
+        Me.lbInfoRemoteDir.Location = New System.Drawing.Point(8, 20)
         Me.lbInfoRemoteDir.Name = "lbInfoRemoteDir"
         Me.lbInfoRemoteDir.Size = New System.Drawing.Size(367, 21)
         Me.lbInfoRemoteDir.TabIndex = 0
         '
         'btConfig
         '
-        Me.btConfig.Location = New System.Drawing.Point(282, 318)
+        Me.btConfig.Location = New System.Drawing.Point(282, 312)
         Me.btConfig.Name = "btConfig"
         Me.btConfig.Size = New System.Drawing.Size(110, 26)
         Me.btConfig.TabIndex = 6
@@ -90,7 +94,7 @@ Partial Class main
         'rchInfo
         '
         Me.rchInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rchInfo.Location = New System.Drawing.Point(132, 32)
+        Me.rchInfo.Location = New System.Drawing.Point(132, 26)
         Me.rchInfo.Name = "rchInfo"
         Me.rchInfo.ReadOnly = True
         Me.rchInfo.Size = New System.Drawing.Size(260, 72)
@@ -99,7 +103,7 @@ Partial Class main
         '
         'btSelectFolder
         '
-        Me.btSelectFolder.Location = New System.Drawing.Point(12, 32)
+        Me.btSelectFolder.Location = New System.Drawing.Point(12, 26)
         Me.btSelectFolder.Name = "btSelectFolder"
         Me.btSelectFolder.Size = New System.Drawing.Size(114, 33)
         Me.btSelectFolder.TabIndex = 9
@@ -108,7 +112,7 @@ Partial Class main
         '
         'btSelectFile
         '
-        Me.btSelectFile.Location = New System.Drawing.Point(12, 71)
+        Me.btSelectFile.Location = New System.Drawing.Point(12, 65)
         Me.btSelectFile.Name = "btSelectFile"
         Me.btSelectFile.Size = New System.Drawing.Size(114, 33)
         Me.btSelectFile.TabIndex = 10
@@ -118,23 +122,24 @@ Partial Class main
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(129, 16)
+        Me.Label1.Location = New System.Drawing.Point(129, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(62, 13)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Informacion"
+        Me.Label1.Visible = False
         '
         'ProgressBar1
         '
         Me.ProgressBar1.BackColor = System.Drawing.SystemColors.Control
-        Me.ProgressBar1.Location = New System.Drawing.Point(13, 207)
+        Me.ProgressBar1.Location = New System.Drawing.Point(13, 201)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(379, 26)
         Me.ProgressBar1.TabIndex = 13
         '
         'lbPorcentaje
         '
-        Me.lbPorcentaje.Location = New System.Drawing.Point(170, 191)
+        Me.lbPorcentaje.Location = New System.Drawing.Point(170, 185)
         Me.lbPorcentaje.Name = "lbPorcentaje"
         Me.lbPorcentaje.Size = New System.Drawing.Size(156, 13)
         Me.lbPorcentaje.TabIndex = 13
@@ -143,7 +148,7 @@ Partial Class main
         'lbSubiendo
         '
         Me.lbSubiendo.AutoSize = True
-        Me.lbSubiendo.Location = New System.Drawing.Point(103, 191)
+        Me.lbSubiendo.Location = New System.Drawing.Point(103, 185)
         Me.lbSubiendo.Name = "lbSubiendo"
         Me.lbSubiendo.Size = New System.Drawing.Size(59, 13)
         Me.lbSubiendo.TabIndex = 14
@@ -152,7 +157,7 @@ Partial Class main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 191)
+        Me.Label2.Location = New System.Drawing.Point(10, 185)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(90, 13)
         Me.Label2.TabIndex = 15
@@ -161,7 +166,7 @@ Partial Class main
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(10, 246)
+        Me.Label3.Location = New System.Drawing.Point(10, 240)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(58, 13)
         Me.Label3.TabIndex = 17
@@ -170,17 +175,33 @@ Partial Class main
         'rchStatus
         '
         Me.rchStatus.BackColor = System.Drawing.SystemColors.Control
-        Me.rchStatus.Location = New System.Drawing.Point(13, 266)
+        Me.rchStatus.Location = New System.Drawing.Point(13, 260)
         Me.rchStatus.Name = "rchStatus"
         Me.rchStatus.Size = New System.Drawing.Size(263, 78)
         Me.rchStatus.TabIndex = 18
         Me.rchStatus.Text = ""
         '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(327, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(77, 351)
+        Me.MenuStrip1.TabIndex = 19
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'AcercaDeToolStripMenuItem
+        '
+        Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
+        Me.AcercaDeToolStripMenuItem.Text = "Acerca de"
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(404, 354)
+        Me.ClientSize = New System.Drawing.Size(404, 351)
         Me.Controls.Add(Me.rchStatus)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -194,10 +215,16 @@ Partial Class main
         Me.Controls.Add(Me.btConfig)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.btUpload)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FTPOper for UCP"
         Me.GroupBox3.ResumeLayout(False)
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -220,4 +247,6 @@ Partial Class main
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents rchStatus As RichTextBox
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
 End Class

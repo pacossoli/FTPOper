@@ -117,11 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="letras_recorte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\letras_recorte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Sin título" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sin título.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TextBoxDescription.Text" xml:space="preserve">
+    <value>Bienvenido!!
+
+Este software le permitirá a Ud. subir cualquier tipo de archivo a un servidor FTP remoto.
+
+Este programa fue diseñado por Pedro Cossoli de GLPC Electrónica para la Universidad de la Cuenca del Plata (UCP, Corrientes)
+Mayo 2019</value>
   </data>
 </root>

@@ -326,4 +326,9 @@ Public Class main
         lbSubiendo.Text = ""
     End Sub
 
+    Private Sub AcercaDeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AcercaDeToolStripMenuItem.Click
+        Dim frmAbout As New frmAbout
+        frmAbout.ShowDialog()
+
+    End Sub
 End Class

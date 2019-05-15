@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_509116111CDA449C854B1C066161A1AB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5367DD3BE45C4159900721DCC818CC96"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B32FC60DBBB942B298D9F4A477BA0924"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -22,13 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_C8B26F5E1E3B1D86A31F32530D96ECA6"
-        "OwnerKey" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5367DD3BE45C4159900721DCC818CC96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -40,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
+        "OwnerKey" = "8:_5367DD3BE45C4159900721DCC818CC96"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -138,6 +144,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_509116111CDA449C854B1C066161A1AB"
+            {
+            "SourcePath" = "8:D:\\Descargas 2\\ucp_logo__17T_icon.ico"
+            "TargetName" = "8:ucp_logo__17T_icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_CD79C600ACD04199873ED6A9F667FD12"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B32FC60DBBB942B298D9F4A477BA0924"
             {
             "SourcePath" = "8:..\\FTPOper\\bin\\Debug\\config\\config.conf"
@@ -238,6 +264,17 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_CD79C600ACD04199873ED6A9F667FD12"
+                    {
+                    "Name" = "8:icon"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_684D32BF6E8C400DBB7D047F7C19B2F1"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -257,7 +294,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FTPOper"
         "ProductCode" = "8:{2C3659FE-0801-42A2-B59A-943F9114D5D7}"
-        "PackageCode" = "8:{6BD047E9-6BAF-4A01-A2D0-F6DD650B32C0}"
+        "PackageCode" = "8:{5738AE6F-06F7-4C12-AC62-A58F80652740}"
         "UpgradeCode" = "8:{D6C9B20F-A1F7-4F2B-AA2E-67879D7B8717}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -377,7 +414,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F9C762FC55494AC68288D17565153CC4"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_38ECCDD4E05A454BBC30A894F60E3320"
             {
             "Name" = "8:FTPOper for UCP"
             "Arguments" = "8:"
@@ -385,10 +422,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_CA8AAAEC24CB4038BEA8D0659E19CC70"
+            "Target" = "8:_5367DD3BE45C4159900721DCC818CC96"
             "Folder" = "8:_137AF0A1454E404B838D34DBE9AC7A9E"
             "WorkingFolder" = "8:_B345A544C7084A7283FF25B25FA9EFF4"
-            "Icon" = "8:"
+            "Icon" = "8:_509116111CDA449C854B1C066161A1AB"
             "Feature" = "8:"
             }
         }
@@ -790,35 +827,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_99B34F85D3EB4B10BA27CA927E46F2E4"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B345A544C7084A7283FF25B25FA9EFF4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{38EF2919-B2B2-475C-9DE0-7BD77087C26D}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CA8AAAEC24CB4038BEA8D0659E19CC70"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5367DD3BE45C4159900721DCC818CC96"
             {
             "SourcePath" = "8:..\\FTPOper\\obj\\Debug\\FTPOper.exe"
             "TargetName" = "8:"
@@ -840,6 +849,34 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{38EF2919-B2B2-475C-9DE0-7BD77087C26D}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_94F5538B1F284B1A9DCCAFC6AC024505"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B345A544C7084A7283FF25B25FA9EFF4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:ContentFiles"
             "OutputProjectGuid" = "8:{38EF2919-B2B2-475C-9DE0-7BD77087C26D}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
