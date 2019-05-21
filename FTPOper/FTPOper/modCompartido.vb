@@ -23,7 +23,7 @@ Module modCompartido
     Public puerto As Integer
 
 
-    'formato: raiz + remoteSubFolder + remoteFolder
+    'formato: raiz + remoteFolder
     'para un user comun seria: /public_html/ucp/recibos_mes_tal
     'para un user admin seria: /ucp/recibos_mes_tal
     Public remotePath As String            'direccion en el servidor FTP remoteSubFolder + remoteFolder

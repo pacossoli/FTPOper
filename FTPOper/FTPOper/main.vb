@@ -116,6 +116,8 @@ Public Class main
 
         resetParameters()
 
+        OpenFileDialog1.Filter = "Archivos .pdf | *.pdf"
+
         If OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
             Exit Sub
         End If
