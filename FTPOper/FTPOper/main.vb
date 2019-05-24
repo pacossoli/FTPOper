@@ -27,7 +27,7 @@ Imports System.ComponentModel
 Public Class main
 
     'Paths
-    Dim localPath As String             'direccion en disco rigido local
+    Dim localPath As String                                 'direccion en disco rigido local
 
     'variables para archivos
     Dim fileList As List(Of String) = New List(Of String)   'almacena todos los archivos de una carpeta
