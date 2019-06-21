@@ -42,6 +42,8 @@ Partial Class main
         Me.rchStatus = New System.Windows.Forms.RichTextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -185,7 +187,7 @@ Partial Class main
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(327, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(537, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(77, 351)
         Me.MenuStrip1.TabIndex = 19
@@ -194,14 +196,34 @@ Partial Class main
         'AcercaDeToolStripMenuItem
         '
         Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(64, 19)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(445, 153)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(101, 32)
+        Me.Button1.TabIndex = 20
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(447, 209)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(98, 31)
+        Me.Button2.TabIndex = 21
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(404, 351)
+        Me.ClientSize = New System.Drawing.Size(614, 351)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rchStatus)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -249,4 +271,6 @@ Partial Class main
     Friend WithEvents rchStatus As RichTextBox
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class

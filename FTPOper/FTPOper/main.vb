@@ -6,13 +6,13 @@ Imports FluentFTP.Proxy
 Imports System.ComponentModel
 
 ''' <summary>
-''' Cada vez que el programa se inicia, se crea un archivo de logueo con el siguiente formato: log_yyyymmdd_hhmmss
+''' Cada vez que el programa se inicia, se crea un archivo de logueo con el siguiente formato: log_yyyymmdd_hhmmss 'NO ESTA IMPLEMENTADO
 ''' 
-''' A pesaer de que el software se deberia usar una vez al mes
+''' A pesar de que el software se deberia usar una vez al mes
 ''' puede darse el caso de que se quieran subir mas archivos en el mes o 
 ''' se haya perdido conexion y deba reiniciarse el proceso.
 ''' Por lo tanto se propone el siguiente funcionaminto:
-''' Al seleccionar la carpeta que contienen los recibos del mes, los mismo se suben al servidor FTP y se guardan en un directorio 
+''' Al seleccionar la carpeta que contienen los recibos del mes, los mismo se suben al servidor FTP y se guardan en un directorio *VER NOTA1
 ''' cuyo nombre tendra el siguiente formato: yyyymm (AñoMes) de esa forma
 ''' si queren agregar mas archivos, siempre y cuando sean del mismo mes, se agregan solos a la misma carpeta
 ''' Ademas, facilita volver a subir archivos si se perdio la conexion a internet y se quieren volver a subir archivos
@@ -20,6 +20,17 @@ Imports System.ComponentModel
 ''' 
 ''' no se como funciona la libreria de proxy
 ''' no se como funciona la libreria de progreso, si bien ya tengo implementado eso, pero quiero la otra
+''' 
+''' NOTA1
+''' antes de subir los archivos en crudo, vamos a hacer una carpeta temporal (o no) donde guarden los archivos encripados
+''' y esa carpeta es la que se sube
+''' por lo tanto va a cambiar la variable localPath
+''' o podemos hacer otra que sea localPathEncrypted
+''' 
+''' PROCESO DE ENCRIPTACION
+''' Cuando el usuario selecciona una carpeta o un archivo, la lista de archivos se guarda en fileList, tomamos ese path y se lo pasamos a la funcion que encripta
+''' la funciona que encripta, toda una archivo de ese path, lo encripta y lo guarda en otra carpeta
+''' esa carpeta es la que se sube
 ''' </summary>
 ''' 
 
@@ -28,6 +39,8 @@ Public Class main
 
     'Paths
     Dim localPath As String                                 'direccion en disco  rigido local
+    Dim localPathEncrypted As String
+
 
     'variables para archivos
     Dim fileList As List(Of String) = New List(Of String)   'almacena todos los archivos de una carpeta
@@ -36,8 +49,6 @@ Public Class main
 
     'error handling
     Dim errorType As Integer    '0 ninguno; 1=login incorrect; 2=error de subida de archivo
-
-
 
 
 
@@ -128,7 +139,7 @@ Public Class main
         localPath = file.DirectoryName & "\"               'obtengo solo el path del directorio de donde esta el archivo
         fileList.Add(file.Name)                             'usamos la misma estructura que para multiples archivos
         fileSize = file.Length                             'tamaño del archivo
-        fileCount = 1
+        fileCount = 1                                       'porque hay un solo archivo seleccionado
 
         Dim str1 As String = "Path del archivo de origen: " 'localPath
         Dim str2 As String = "Tamaño total a subir: " ' fileSize
@@ -157,6 +168,7 @@ Public Class main
 
     End Sub
 
+
     Private Sub btUpload_Click(sender As Object, e As EventArgs) Handles btUpload.Click
         'bloqueamos los botones mientras se suben archivos
         btSelectFolder.Enabled = False
@@ -172,7 +184,7 @@ Public Class main
 
 
     '#################################################################
-    '#################-----FUNCIONES PRINCIPALRD-----#################
+    '#################-----FUNCIONES PRINCIPALES-----#################
     '#################################################################
 
 
@@ -203,6 +215,7 @@ Public Class main
                 cliente.RetryAttempts = 2
                 'FtpExist.Append verifica si existe, si existe y le faltan datos, los sube el archivo de nuevo.
                 'FtpVerify.Retry reintenta subir un archivo cuando no coinciden los hash, pero el servidor debe soportar hash
+                'antes del upload, tengo que implementar mi función de encriptacion de pdf
                 cliente.UploadFile(localPath & fileList(i).ToString, remotePath & fileList(i).ToString, FtpExists.Append, True, FtpVerify.Retry)
 
                 bgw.ReportProgress(i)
@@ -332,5 +345,23 @@ Public Class main
         Dim frmAbout As New frmAbout
         frmAbout.ShowDialog()
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim path As String = "C:\pdf1.pdf"
+        Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
+        Dim dataEncrypt() As Byte = Encrypt(data, Ekey) 'encripto todo
+        'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
+        File.WriteAllBytes("C:\pdf1_encr.pdf", dataEncrypt)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim path As String = "C:\pdf1_encr.pdf"
+        Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
+        Dim dataEncrypt() As Byte = Decrypt(data, Ekey) 'encripto todo
+        'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
+        File.WriteAllBytes("C:\pdf1_recuperado.pdf", dataEncrypt)
     End Sub
 End Class
