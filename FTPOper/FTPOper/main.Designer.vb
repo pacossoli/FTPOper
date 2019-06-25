@@ -187,7 +187,7 @@ Partial Class main
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(537, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(326, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(77, 351)
         Me.MenuStrip1.TabIndex = 19
@@ -221,7 +221,7 @@ Partial Class main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(614, 351)
+        Me.ClientSize = New System.Drawing.Size(403, 351)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rchStatus)

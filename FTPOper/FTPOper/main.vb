@@ -56,6 +56,8 @@ Public Class main
     'error handling
     Dim errorType As Integer    '0 ninguno; 1=login incorrect; 2=error de subida de archivo
 
+    'objeto para la clase de encriptación
+    Dim objCODEC As New CODEControl.CODEControl
 
 
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -83,7 +85,9 @@ Public Class main
 
     End Sub
 
-
+    Private Sub main_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        clearEncryptedFiles()
+    End Sub
 
 
     '###################################################
@@ -216,7 +220,6 @@ Public Class main
             Exit Sub
         End Try
 
-
         'creamos carpeta en el servidor remoto
         remotePath = remoteFolder & "/"
         clienteFTP.CreateDirectory(remotePath)
@@ -251,6 +254,32 @@ Public Class main
 
         errorType = 0   'no error
     End Sub
+
+
+    Private Sub encryptFile(i As Integer)
+        'recibo como parámetro la posición i del nombre de archivo que esta en la lista fileList
+        'luego, le agrego el resto del path y encripto
+        'C/ftpopertemp/fileList(i)
+        Dim path As String = localPath & fileList(i)
+        Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
+        Dim dataEncrypt() As Byte = objCODEC.Encrypt(data) 'encripto todo
+        'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
+        File.WriteAllBytes(localPathEncrypted & fileList(i).ToString(), dataEncrypt)
+    End Sub
+
+
+    Private Sub uploadFile(i As Integer)
+        'FtpExist.Append verifica si existe, si existe y le faltan datos, los sube el archivo de nuevo.
+        'FtpVerify.Retry reintenta subir un archivo cuando no coinciden los hash, pero el servidor debe soportar hash
+        'antes del upload, tengo que implementar mi función de encriptacion de pdf
+        clienteFTP.UploadFile(localPathEncrypted & fileList(i).ToString, remotePath & fileList(i).ToString, FtpExists.Append, True, FtpVerify.Retry)
+    End Sub
+
+
+    Private Sub clearEncryptedFiles()
+        Directory.Delete(localPathEncrypted, True)
+    End Sub
+
 
 
 
@@ -363,7 +392,6 @@ Public Class main
     Private Sub AcercaDeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AcercaDeToolStripMenuItem.Click
         Dim frmAbout As New frmAbout
         frmAbout.ShowDialog()
-
     End Sub
 
 
@@ -373,48 +401,23 @@ Public Class main
 
         Dim path As String = "C:\pdf1.pdf"
         Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
-        Dim dataEncrypt() As Byte = Encrypt(data, Ekey) 'encripto todo
+
+        'Dim dataEncrypt() As Byte = Encrypt(data, Ekey) 'encripto todo
+        Dim dataEncrypt() As Byte = objCODEC.Encrypt(data)
         'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
         File.WriteAllBytes("C:\pdf1_encr.pdf", dataEncrypt)
+
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
         Dim path As String = "C:\pdf1_encr.pdf"
         Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
-        Dim dataEncrypt() As Byte = Decrypt(data, Ekey) 'encripto todo
+        'Dim dataEncrypt() As Byte = Decrypt(data, Ekey) 'encripto todo
+        Dim dataEncrypt() As Byte = objCODEC.Decrypt(data)
         'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
         File.WriteAllBytes("C:\pdf1_recuperado.pdf", dataEncrypt)
     End Sub
 
-
-
-
-
-
-    Private Sub uploadFile(i As Integer)
-        'FtpExist.Append verifica si existe, si existe y le faltan datos, los sube el archivo de nuevo.
-        'FtpVerify.Retry reintenta subir un archivo cuando no coinciden los hash, pero el servidor debe soportar hash
-        'antes del upload, tengo que implementar mi función de encriptacion de pdf
-        clienteFTP.UploadFile(localPathEncrypted & fileList(i).ToString, remotePath & fileList(i).ToString, FtpExists.Append, True, FtpVerify.Retry)
-    End Sub
-
-
-
-    Private Sub encryptFile(i As Integer)
-        'recibo como parámetro la posición i del nombre de archivo que esta en la lista fileList
-        'luego, le agrego el resto del path y encripto
-        'C/ftpopertemp/fileList(i)
-        Dim path As String = localPath & fileList(i)
-        Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
-        Dim dataEncrypt() As Byte = Encrypt(data, Ekey) 'encripto todo
-        'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
-        File.WriteAllBytes(localPathEncrypted & fileList(i).ToString(), dataEncrypt)
-    End Sub
-
-
-    Private Sub clearEncryptedFiles()
-        Directory.Delete(localPathEncrypted, True)
-    End Sub
 
 End Class
