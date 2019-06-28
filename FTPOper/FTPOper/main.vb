@@ -76,7 +76,7 @@ Public Class main
 
         remoteFolder = remoteFolder & "_" & fechaActual      'entonces la carpeta se llama: lo que puso el usuario _ 20190508_1752
 
-        lbInfoRemoteDir.Text = FTPserver & "/" & remoteFolder
+        txInfoRemoteDir.Text = "/" & remoteFolder
 
         localPathEncrypted = "C:/_ftpopertemp/"
 
@@ -86,13 +86,21 @@ Public Class main
     End Sub
 
     Private Sub main_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        clearEncryptedFiles()
+        If clearEncryptedFiles() = True Then
+            End
+        End If
     End Sub
 
 
     '###################################################
     '#################-----BOTONES-----#################
     '###################################################
+
+
+    Private Sub txInfoRemoteDir_TextChanged(sender As Object, e As EventArgs) Handles txInfoRemoteDir.TextChanged
+        remoteFolder = txInfoRemoteDir.Text
+    End Sub
+
 
     Private Sub btSelectFolder_Click(sender As Object, e As EventArgs) Handles btSelectFolder.Click
         rchInfo.Clear()
@@ -179,7 +187,7 @@ Public Class main
 
         remoteFolder = remoteFolder & "_" & fechaActual
 
-        lbInfoRemoteDir.Text = FTPserver & "/" & remoteFolder
+        txInfoRemoteDir.Text = "/" & remoteFolder
 
     End Sub
 
@@ -276,9 +284,14 @@ Public Class main
     End Sub
 
 
-    Private Sub clearEncryptedFiles()
-        Directory.Delete(localPathEncrypted, True)
-    End Sub
+    Private Function clearEncryptedFiles() As Boolean
+        Try
+            Directory.Delete(localPathEncrypted, True)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
 
 
@@ -324,8 +337,11 @@ Public Class main
                 Dim str4 As String = "-----------########-----------"
 
                 ProgressBar1.Value = ProgressBar1.Maximum
+                ProgressBar1.Update()
 
                 rchStatus.Text = str4 & vbCrLf & str1 & vbCrLf & str2 & fileCount & vbCrLf & str3 & remotePath & vbCrLf & str4
+
+                lbSubiendo.Text = "Finalizado"
             Case 1
                 rchStatus.BackColor = Color.Orange
                 rchStatus.Text = "Error login: Usuario y/o Contraseña incorrectos"

@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>C2Ef3vSJkykuGxnAWLO9O9Pn4ZKQvHzdDNhTVqpxkf8=</dsig:DigestValue>
+        <dsig:DigestValue>srbOUNVBS+ekbVaMComqwYINwCq/04y3ghVkdqchMmM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FTPOper.exe" size="422912">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FTPOper.exe" size="423424">
       <assemblyIdentity name="FTPOper" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WTESgiaGVsPDpNm1yHKZlUPXqGOxyRpPuIObTnva6qg=</dsig:DigestValue>
+        <dsig:DigestValue>LtC72XQ2Dd7qra+B5dQuRvRzB8wqqpC8CVTcmamwgjk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

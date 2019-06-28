@@ -28,7 +28,6 @@ Partial Class main
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.lbInfoRemoteDir = New System.Windows.Forms.Label()
         Me.btConfig = New System.Windows.Forms.Button()
         Me.rchInfo = New System.Windows.Forms.RichTextBox()
         Me.btSelectFolder = New System.Windows.Forms.Button()
@@ -44,6 +43,7 @@ Partial Class main
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.txInfoRemoteDir = New System.Windows.Forms.TextBox()
         Me.GroupBox3.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -68,21 +68,13 @@ Partial Class main
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.lbInfoRemoteDir)
+        Me.GroupBox3.Controls.Add(Me.txInfoRemoteDir)
         Me.GroupBox3.Location = New System.Drawing.Point(13, 116)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(379, 50)
         Me.GroupBox3.TabIndex = 5
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Directorio remoto"
-        '
-        'lbInfoRemoteDir
-        '
-        Me.lbInfoRemoteDir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbInfoRemoteDir.Location = New System.Drawing.Point(8, 20)
-        Me.lbInfoRemoteDir.Name = "lbInfoRemoteDir"
-        Me.lbInfoRemoteDir.Size = New System.Drawing.Size(367, 21)
-        Me.lbInfoRemoteDir.TabIndex = 0
         '
         'btConfig
         '
@@ -217,6 +209,13 @@ Partial Class main
         Me.Button2.Text = "Button2"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'txInfoRemoteDir
+        '
+        Me.txInfoRemoteDir.Location = New System.Drawing.Point(6, 19)
+        Me.txInfoRemoteDir.Name = "txInfoRemoteDir"
+        Me.txInfoRemoteDir.Size = New System.Drawing.Size(367, 20)
+        Me.txInfoRemoteDir.TabIndex = 1
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -245,6 +244,7 @@ Partial Class main
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FTPOper for UCP"
         Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -257,7 +257,6 @@ Partial Class main
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents lbInfoRemoteDir As Label
     Friend WithEvents btConfig As Button
     Friend WithEvents rchInfo As RichTextBox
     Friend WithEvents btSelectFolder As Button
@@ -273,4 +272,5 @@ Partial Class main
     Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents txInfoRemoteDir As TextBox
 End Class

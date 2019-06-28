@@ -37,6 +37,11 @@ CODEControl
  </summary>
  
 </member>
+<member name="M:CODEControl.CODEControl.#ctor">
+ <summary>
+ Constructor de clase
+ </summary>
+</member>
 <member name="M:CODEControl.CODEControl.Encrypt(System.String)">
  <summary>
  Encripta un string y devuelve un string legible (es decir con simbolos dentro del código ASCII)
