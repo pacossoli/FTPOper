@@ -86,8 +86,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\MyClasses\CODEControl\CODEControl\bin\Debug\CODEControl.dll</HintPath>
     </Reference>
-    <Reference Include="FluentFTP, Version=24.0.0.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentFTP.24.0.0\lib\net45\FluentFTP.dll</HintPath>
+    <Reference Include="FluentFTP, Version=25.0.5.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.25.0.5\lib\net45\FluentFTP.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -180,7 +180,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -203,6 +202,7 @@
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\letras_recorte.png" />
   </ItemGroup>
   <ItemGroup>
