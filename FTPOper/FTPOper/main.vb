@@ -45,7 +45,8 @@ Public Class main
     'Paths
     Dim localPath As String                                 'direccion en disco rigido local
     Dim localPathEncrypted As String
-
+    Dim localPathReports As String = "C:\_reports\"
+    Dim localPathReportsTemp As String = "C:\_reports_temp\"
     Dim clienteFTP As FtpClient
 
     'variables para archivos
@@ -205,6 +206,38 @@ Public Class main
     End Sub
 
 
+    Private Sub btReportes_Click(sender As Object, e As EventArgs) Handles btReportes.Click
+        Dim filesInRemoteFolder() As FtpListItem
+
+        clienteFTP = New FtpClient(FTPserver)
+
+        clienteFTP.Credentials = New NetworkCredential(FTPuser, FTPpassword)   'cargamos las credenciales
+
+        Try
+            clienteFTP.Connect()
+
+            filesInRemoteFolder = clienteFTP.GetListing(reportPath, FtpListOption.Recursive)
+
+            For Each file In filesInRemoteFolder
+                clienteFTP.DownloadFile(localPathReportsTemp & file.Name, file.FullName)
+                desencriptarContenido(localPathReportsTemp, file.Name)
+            Next
+
+            Directory.Delete(localPathReportsTemp, True)
+
+        Catch ex As Exception
+            errorType = 1   'error de login
+            Exit Sub
+        End Try
+
+        Dim result As DialogResult = MsgBox("Precione Aceptar para ver la carpeta de resultados", MsgBoxStyle.OkOnly, "Descarga finalizada")
+        If result = DialogResult.OK Then
+            Process.Start("explorer.exe", localPathReports)
+        End If
+
+    End Sub
+
+
 
     '#################################################################
     '#################-----FUNCIONES PRINCIPALES-----#################
@@ -284,16 +317,6 @@ Public Class main
     End Sub
 
 
-    Private Function clearEncryptedFiles() As Boolean
-        Try
-            Directory.Delete(localPathEncrypted, True)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-
-
 
 
     Private Sub bgw_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw.DoWork
@@ -364,30 +387,6 @@ Public Class main
     '############################################################
 
 
-    'esto vamos a ver ultimo
-    Private Sub FTPLogService()
-
-        Dim pathFolderLog As String = ApplicationMainPath & "/reports/"
-        Dim dir As DirectoryInfo = New DirectoryInfo(pathFolderLog)
-
-        Dim fechaLog As String = DateTime.Now.ToString("yyyyMMdd_HHmm")
-        Dim pathLogFile As String = "logFile_ " & fechaLog & ".txt"
-
-        If Not dir.Exists Then
-            dir.Create()
-        End If
-
-        FtpTrace.LogFunctions = True
-        FtpTrace.LogIP = True
-        FtpTrace.LogUserName = True
-        FtpTrace.LogPassword = False 'pasar a false despues 
-
-        FtpTrace.LogFunctions = True
-        FtpTrace.AddListener(New TextWriterTraceListener(pathFolderLog & pathLogFile))       'despues poner ruta para el archivo log
-
-    End Sub
-
-
     Private Sub rchInfo_SelectionChanged(sender As Object, e As EventArgs) Handles rchInfo.SelectionChanged
         rchInfo.Select(rchInfo.SelectionStart, 0)
     End Sub
@@ -405,10 +404,59 @@ Public Class main
         lbSubiendo.Text = ""
     End Sub
 
+
     Private Sub AcercaDeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AcercaDeToolStripMenuItem.Click
         Dim frmAbout As New frmAbout
         frmAbout.ShowDialog()
     End Sub
+
+
+
+
+
+    Private Function clearEncryptedFiles() As Boolean
+        Try
+            Directory.Delete(localPathEncrypted, True)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
+    Private Sub decryptFile(path As String)
+
+        Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
+        Dim dataEncrypt() As Byte = objCODEC.Decrypt(data)
+
+        'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
+        File.WriteAllBytes("C:\recuperado.pdf", dataEncrypt)
+        'en si, es la función, solo que no esta terminada
+    End Sub
+
+
+    Private Sub desencriptarContenido(path As String, fileName As String)
+        Dim archivo As StreamReader
+        Dim linea As String
+        Dim str As String = ""
+
+        archivo = File.OpenText(path & fileName)
+
+        While Not archivo.EndOfStream
+            linea = archivo.ReadLine()
+            str = str & objCODEC.Decrypt(linea) & vbCrLf
+        End While
+
+        If Not Directory.Exists(localPathReports) Then
+            MkDir(localPathReports)
+        End If
+
+        File.WriteAllText(localPathReports & fileName, str)
+
+        archivo.Close()
+
+    End Sub
+
 
 
 
@@ -427,13 +475,21 @@ Public Class main
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        Dim path As String = "C:\pdf1_encr.pdf"
+        Dim path As String = "C:\DownloadReport_201907.txt"
         Dim data() As Byte = File.ReadAllBytes(path)    'leo el archivo
+        Dim data2 As String = File.ReadAllText(path)
+        data2 = data2.Replace(vbCrLf, "")
         'Dim dataEncrypt() As Byte = Decrypt(data, Ekey) 'encripto todo
-        Dim dataEncrypt() As Byte = objCODEC.Decrypt(data)
+        'Dim dataEncrypt() As Byte = objCODEC.Decrypt(data)
+        Dim decryptedStr As String = objCODEC.Decrypt(data2)
+
         'ahora ese dataEncrypt lo tengo que tirar dentro de un archivo
-        File.WriteAllBytes("C:\pdf1_recuperado.pdf", dataEncrypt)
+        'File.WriteAllBytes("C:\recuperado.txt", dataEncrypt)
+        File.WriteAllText("C:\recuperado.txt", decryptedStr)
     End Sub
+
+
+
 
 
 End Class

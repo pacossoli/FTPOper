@@ -28,6 +28,7 @@ Partial Class main
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.txInfoRemoteDir = New System.Windows.Forms.TextBox()
         Me.btConfig = New System.Windows.Forms.Button()
         Me.rchInfo = New System.Windows.Forms.RichTextBox()
         Me.btSelectFolder = New System.Windows.Forms.Button()
@@ -43,7 +44,7 @@ Partial Class main
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.txInfoRemoteDir = New System.Windows.Forms.TextBox()
+        Me.btReportes = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -75,6 +76,13 @@ Partial Class main
         Me.GroupBox3.TabIndex = 5
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Directorio remoto"
+        '
+        'txInfoRemoteDir
+        '
+        Me.txInfoRemoteDir.Location = New System.Drawing.Point(6, 19)
+        Me.txInfoRemoteDir.Name = "txInfoRemoteDir"
+        Me.txInfoRemoteDir.Size = New System.Drawing.Size(367, 20)
+        Me.txInfoRemoteDir.TabIndex = 1
         '
         'btConfig
         '
@@ -179,9 +187,9 @@ Partial Class main
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(326, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(323, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(77, 351)
+        Me.MenuStrip1.Size = New System.Drawing.Size(77, 385)
         Me.MenuStrip1.TabIndex = 19
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -209,18 +217,21 @@ Partial Class main
         Me.Button2.Text = "Button2"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'txInfoRemoteDir
+        'btReportes
         '
-        Me.txInfoRemoteDir.Location = New System.Drawing.Point(6, 19)
-        Me.txInfoRemoteDir.Name = "txInfoRemoteDir"
-        Me.txInfoRemoteDir.Size = New System.Drawing.Size(367, 20)
-        Me.txInfoRemoteDir.TabIndex = 1
+        Me.btReportes.Location = New System.Drawing.Point(13, 353)
+        Me.btReportes.Name = "btReportes"
+        Me.btReportes.Size = New System.Drawing.Size(379, 26)
+        Me.btReportes.TabIndex = 22
+        Me.btReportes.Text = "Bajar archivos de reportes de descargas"
+        Me.btReportes.UseVisualStyleBackColor = True
         '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(403, 351)
+        Me.ClientSize = New System.Drawing.Size(400, 385)
+        Me.Controls.Add(Me.btReportes)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rchStatus)
@@ -273,4 +284,5 @@ Partial Class main
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents txInfoRemoteDir As TextBox
+    Friend WithEvents btReportes As Button
 End Class

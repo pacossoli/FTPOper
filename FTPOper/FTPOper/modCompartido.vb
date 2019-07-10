@@ -16,6 +16,8 @@ Module modCompartido
     Private Const DefaultFTPuser = "ucptest@carteled.com.ar"
     Private Const DefaultFTPpassword = "UCPtest2019"
     Private Const DefaultRemoteFolder = "remoteFolder"
+
+
     'siguen...
 
     'not implemented yet
@@ -28,6 +30,7 @@ Module modCompartido
     'para un user admin seria: /ucp/recibos_mes_tal
     Public remotePath As String            'direccion en el servidor FTP remoteSubFolder + remoteFolder
     Public remoteFolder As String          'carpeta donde se van a guardar los archivos, debe ser creada en el momento con el nombre que se muestra en main
+    Public reportPath As String = "/ucp/reports"     'ver bien esta direccion cuando me asignen el ftp
 
     Public fechaActual As String
 

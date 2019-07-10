@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
   <asmv1:assemblyIdentity name="FTPOper.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="en" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="Resources\ucp_logo__17T_icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="FTPOper" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -49,31 +50,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>srbOUNVBS+ekbVaMComqwYINwCq/04y3ghVkdqchMmM=</dsig:DigestValue>
+        <dsig:DigestValue>sz5/bb+74MxSycMAqljWKDKRtEWsosgFWH8QwEFQiZY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FluentFTP.dll" size="247808">
-      <assemblyIdentity name="FluentFTP" version="24.0.0.0" publicKeyToken="F4AF092B1D8DF44F" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FluentFTP.dll" size="248832">
+      <assemblyIdentity name="FluentFTP" version="25.0.5.0" publicKeyToken="F4AF092B1D8DF44F" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sBdkuPXWENZ657oS0o1b4Y7tRa4tnE5VSnx2cmvEYr8=</dsig:DigestValue>
+        <dsig:DigestValue>LdF2ssbtEZTGXL8KPtJwgP8ud0zYmt2XSYcGIzHWexY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FTPOper.exe" size="423424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FTPOper.exe" size="662016">
       <assemblyIdentity name="FTPOper" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LtC72XQ2Dd7qra+B5dQuRvRzB8wqqpC8CVTcmamwgjk=</dsig:DigestValue>
+        <dsig:DigestValue>u4pR/HLk/NL0X9rR/LZ5Osvrt09MlNh/ehCGxmftL78=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -84,6 +85,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>f2Amxr78vsFZA+wJQGhQonhSUPtxsWx+Zo545uASGVY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\ucp_logo__17T_icon.ico" size="236382">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>y59xZsXHjvGoSLFKjnqTKNiIcmrpVBKf+NK8QuOxk7M=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
