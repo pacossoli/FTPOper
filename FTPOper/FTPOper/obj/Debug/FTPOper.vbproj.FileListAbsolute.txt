@@ -19,3 +19,4 @@ D:\proyectosVB.net\FTPOper\FTPOper\FTPOper\obj\Debug\FTPOper.application
 D:\proyectosVB.net\FTPOper\FTPOper\FTPOper\obj\Debug\FTPOper.exe
 D:\proyectosVB.net\FTPOper\FTPOper\FTPOper\obj\Debug\FTPOper.xml
 D:\proyectosVB.net\FTPOper\FTPOper\FTPOper\obj\Debug\FTPOper.pdb
+D:\proyectosVB.net\FTPOper\FTPOper\FTPOper\obj\Debug\FTPOper.vbprojResolveAssemblyReference.cache

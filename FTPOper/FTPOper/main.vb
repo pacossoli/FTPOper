@@ -79,12 +79,10 @@ Public Class main
 
         txInfoRemoteDir.Text = "/" & remoteFolder
 
-        localPathEncrypted = "C:/_ftpopertemp/"
-
-        MkDir(localPathEncrypted)
-        SetAttr(localPathEncrypted, FileAttribute.Hidden)
-
     End Sub
+
+
+
 
     Private Sub main_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If clearEncryptedFiles() = True Then
@@ -109,6 +107,8 @@ Public Class main
         fileList.Clear()
 
         resetParameters()
+
+        createTempFolder()
 
         'si cancela la pantalla
         If FolderBrowserDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
@@ -458,7 +458,12 @@ Public Class main
     End Sub
 
 
+    Private Sub createTempFolder()
+        localPathEncrypted = "C:/_ftpopertemp/"
 
+        MkDir(localPathEncrypted)
+        SetAttr(localPathEncrypted, FileAttribute.Hidden)
+    End Sub
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -488,7 +493,30 @@ Public Class main
         File.WriteAllText("C:\recuperado.txt", decryptedStr)
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        clienteFTP = New FtpClient(FTPserver)
 
+        clienteFTP.Credentials = New NetworkCredential(FTPuser, FTPpassword)   'cargamos las credenciales
+
+        clienteFTP.Connect()
+        Dim server As FtpServer
+        server = clienteFTP.ServerType
+        Dim rta As Boolean = clienteFTP.RecursiveList
+
+        'Dim files() As FtpListItem
+
+        'funcion
+        Dim folders() As FtpListItem
+        Dim files() As FtpListItem
+        folders = clienteFTP.GetListing("/ucp")
+
+        For Each item In folders
+            Dim aux As String = item.FullName
+            files = clienteFTP.GetListing(aux)
+        Next
+
+
+    End Sub
 
 
 

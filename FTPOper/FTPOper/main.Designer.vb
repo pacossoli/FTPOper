@@ -45,6 +45,7 @@ Partial Class main
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btReportes = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -187,7 +188,7 @@ Partial Class main
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(323, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(596, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(77, 385)
         Me.MenuStrip1.TabIndex = 19
@@ -226,11 +227,21 @@ Partial Class main
         Me.btReportes.Text = "Bajar archivos de reportes de descargas"
         Me.btReportes.UseVisualStyleBackColor = True
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(453, 252)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(111, 27)
+        Me.Button3.TabIndex = 23
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 385)
+        Me.ClientSize = New System.Drawing.Size(673, 385)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.btReportes)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -285,4 +296,5 @@ Partial Class main
     Friend WithEvents Button2 As Button
     Friend WithEvents txInfoRemoteDir As TextBox
     Friend WithEvents btReportes As Button
+    Friend WithEvents Button3 As Button
 End Class
