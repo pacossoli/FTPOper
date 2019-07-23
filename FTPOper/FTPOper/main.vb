@@ -151,6 +151,8 @@ Public Class main
 
         resetParameters()
 
+        createTempFolder()
+
         OpenFileDialog1.Filter = "Archivos .pdf | *.pdf"
 
         If OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
@@ -460,9 +462,10 @@ Public Class main
 
     Private Sub createTempFolder()
         localPathEncrypted = "C:/_ftpopertemp/"
-
-        MkDir(localPathEncrypted)
-        SetAttr(localPathEncrypted, FileAttribute.Hidden)
+        If Not Directory.Exists(localPathEncrypted) Then
+            MkDir(localPathEncrypted)
+            SetAttr(localPathEncrypted, FileAttribute.Hidden)
+        End If
     End Sub
 
 
